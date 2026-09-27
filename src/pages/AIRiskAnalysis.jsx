@@ -31,7 +31,7 @@ import RiskTrendChart from '../components/RiskTrendChart';
    ========================================================= */
 
 const API_URL =
-  'http://localhost:5000/api/telemetry';
+  'https://mineguard-backend-x2km.onrender.com/api/telemetry';
 
 
 /* =========================================================

@@ -14,7 +14,7 @@ import RiskBar from '../components/RiskBar';
 import '../styles/mineMap.css';
 
 const REAL_API_URL =
-  'http://localhost:5000/api/telemetry';
+  'https://mineguard-backend-x2km.onrender.com/api/telemetry';
 
 /*
  * 4 physical-looking mine nodes.

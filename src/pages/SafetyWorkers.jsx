@@ -21,7 +21,7 @@ import { workers } from '../data/mockData';
    ========================================================= */
 
 const API_URL =
-  'http://localhost:5000/api/telemetry';
+  'https://mineguard-backend-x2km.onrender.com/api/telemetry';
 
 
 /* =========================================================

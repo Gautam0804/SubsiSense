@@ -17,8 +17,8 @@ const TIME_RANGE_LABELS = {
   '24hours': '24 hours',
 };
 
-const API_URL = 'http://localhost:5000/api/telemetry';
-const HISTORY_API_URL = 'http://localhost:5000/api/telemetry/history';
+const API_URL = 'https://mineguard-backend-x2km.onrender.com/api/telemetry';
+const HISTORY_API_URL = 'https://mineguard-backend-x2km.onrender.com/api/telemetry/history';
 
 export default function LiveMonitoring() {
   const [selectedNode, setSelectedNode] = useState('N01');
@@ -1465,4 +1465,5 @@ function TiltTrendChart({ data }) {
     </div>
   );
 }
+
 

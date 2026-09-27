@@ -15,7 +15,7 @@ import { zones, recentEvents } from '../data/mockData';
 import { StatusBadge } from '../components/StatusIndicator';
 import RiskBar from '../components/RiskBar';
 
-const API_URL = 'http://localhost:5000/api/telemetry';
+const API_URL = 'https://mineguard-backend-x2km.onrender.com/api/telemetry';
 
 const NODE_CONFIG = [
   {
@@ -1160,3 +1160,4 @@ function SensorReading({
     </div>
   );
 }
+
