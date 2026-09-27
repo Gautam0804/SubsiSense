@@ -1,0 +1,1613 @@
+/* ============================================================
+   MineGuard — Global Styles
+   IBM Plex Sans for UI, IBM Plex Mono for sensor values
+   Clean, practical engineering aesthetic
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================ */
+
+:root {
+  --bg-primary: #f5f3ef;
+  --bg-secondary: #edebe6;
+  --bg-surface: #ffffff;
+  --bg-hover: #e8e5df;
+
+  --text-primary: #2c2c2c;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --text-mono: #3a3a3a;
+
+  --border: #d8d5ce;
+  --border-light: #e8e5df;
+
+  --accent-blue: #4a7a9b;
+  --accent-blue-light: #e8f0f5;
+  --accent-green: #5a8a6a;
+  --accent-green-light: #e8f2eb;
+  --accent-amber: #9a7a3a;
+  --accent-amber-light: #f5f0e0;
+  --accent-red: #9a4a4a;
+  --accent-red-light: #f5e8e8;
+  --accent-sage: #6a8a7a;
+
+  --status-normal: #5a8a6a;
+  --status-normal-bg: #e8f2eb;
+  --status-normal-border: #b8d8c0;
+
+  --status-warning: #9a7a3a;
+  --status-warning-bg: #f5f0e0;
+  --status-warning-border: #d8c888;
+
+  --status-high: #9a4a4a;
+  --status-high-bg: #f5e8e8;
+  --status-high-border: #d8a8a8;
+
+  --status-offline: #888888;
+  --status-offline-bg: #f0f0f0;
+
+  --nav-height: 56px;
+  --sidebar-width: 200px;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+[data-theme='dark'] {
+  --bg-primary: #1c1e22;
+  --bg-secondary: #242629;
+  --bg-surface: #2a2d32;
+  --bg-hover: #32353b;
+
+  --text-primary: #e0ddd8;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --text-mono: #c8c5c0;
+
+  --border: #3a3d44;
+  --border-light: #32353b;
+
+  --accent-blue: #6a9ab8;
+  --accent-blue-light: #1e2e38;
+  --accent-green: #7aaa88;
+  --accent-green-light: #1a2e22;
+  --accent-amber: #c8a060;
+  --accent-amber-light: #2a2210;
+  --accent-red: #c86868;
+  --accent-red-light: #2a1818;
+
+  --status-normal: #7aaa88;
+  --status-normal-bg: #1a2e22;
+  --status-normal-border: #3a5844;
+
+  --status-warning: #c8a060;
+  --status-warning-bg: #2a2210;
+  --status-warning-border: #5a4820;
+
+  --status-high: #c86868;
+  --status-high-bg: #2a1818;
+  --status-high-border: #5a2828;
+
+  --status-offline: #666666;
+  --status-offline-bg: #282828;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+}
+
+body {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-weight: 400;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  transition:
+    background-color var(--transition-slow),
+    color var(--transition-slow);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h4 {
+  font-size: 0.9rem;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88em;
+}
+
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.page-content {
+  flex: 1;
+  padding: 84px 32px 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.page-header p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+
+/* ============================================================
+   FIXED NAVIGATION
+   ============================================================ */
+
+.navbar {
+  height: var(--nav-height);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 32px;
+  gap: 32px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1000;
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    background-color var(--transition-slow),
+    border-color var(--transition-slow);
+
+  width: 100%;
+  max-width: 100%;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.navbar-brand-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.navbar-brand-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-link {
+  padding: 0 14px;
+  height: var(--nav-height);
+
+  display: flex;
+  align-items: center;
+
+  font-size: 0.875rem;
+  font-weight: 400;
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  border: none;
+  background: none;
+
+  position: relative;
+
+  transition: color var(--transition-fast);
+
+  white-space: nowrap;
+  text-decoration: none;
+
+  flex-shrink: 0;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.nav-link.active::after {
+  content: '';
+
+  position: absolute;
+
+  bottom: 0;
+  left: 14px;
+  right: 14px;
+
+  height: 2px;
+
+  background-color: var(--accent-blue);
+
+  border-radius: 2px 2px 0 0;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background-color: var(--status-normal);
+
+  flex-shrink: 0;
+}
+
+.status-dot.offline {
+  background-color: var(--status-high);
+}
+
+.theme-toggle {
+  background: var(--bg-secondary);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  padding: 5px 10px;
+
+  font-size: 0.78rem;
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition: all var(--transition-fast);
+
+  font-family: inherit;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+
+/* ============================================================
+   CARDS / PANELS
+   ============================================================ */
+
+.panel {
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  padding: 20px;
+
+  transition:
+    background-color var(--transition-slow),
+    border-color var(--transition-slow);
+
+  width: 100%;
+  min-width: 0;
+}
+
+.panel-sm {
+  padding: 14px 18px;
+}
+
+.panel-title {
+  font-size: 0.78rem;
+  font-weight: 500;
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  color: var(--text-muted);
+
+  margin-bottom: 14px;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+button,
+.btn {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 8px 16px;
+
+  border-radius: var(--radius-md);
+
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  transition: all var(--transition-fast);
+
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent-blue);
+  color: white;
+
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover);
+}
+
+.btn-danger {
+  background: var(--status-high);
+  color: white;
+
+  border: 1px solid transparent;
+}
+
+.btn-danger:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: var(--status-normal);
+  color: white;
+
+  border: 1px solid transparent;
+}
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 11px 24px;
+  font-size: 0.95rem;
+}
+
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 3px 9px;
+
+  border-radius: var(--radius-sm);
+
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  letter-spacing: 0.03em;
+
+  border: 1px solid transparent;
+}
+
+.badge-normal {
+  background: var(--status-normal-bg);
+  color: var(--status-normal);
+  border-color: var(--status-normal-border);
+}
+
+.badge-warning {
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+  border-color: var(--status-warning-border);
+}
+
+.badge-high {
+  background: var(--status-high-bg);
+  color: var(--status-high);
+  border-color: var(--status-high-border);
+}
+
+.badge-offline {
+  background: var(--status-offline-bg);
+  color: var(--status-offline);
+  border-color: var(--border);
+}
+
+
+/* ============================================================
+   INLINE STATUS DOT
+   ============================================================ */
+
+.inline-dot {
+  display: inline-block;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  flex-shrink: 0;
+}
+
+.inline-dot.normal {
+  background: var(--status-normal);
+}
+
+.inline-dot.warning {
+  background: var(--status-warning);
+}
+
+.inline-dot.high {
+  background: var(--status-high);
+}
+
+.inline-dot.offline {
+  background: var(--status-offline);
+}
+
+
+/* ============================================================
+   GRID HELPERS
+   ============================================================ */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-width: 0;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  min-width: 0;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 16px 0;
+}
+
+
+/* ============================================================
+   FORM ELEMENTS
+   ============================================================ */
+
+select {
+  font-family: inherit;
+  font-size: 0.875rem;
+
+  color: var(--text-primary);
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  padding: 7px 12px;
+
+  cursor: pointer;
+
+  transition: border-color var(--transition-fast);
+
+  outline: none;
+
+  max-width: 100%;
+}
+
+select:hover {
+  border-color: var(--accent-blue);
+}
+
+
+/* ============================================================
+   RISK SCORE DISPLAY
+   ============================================================ */
+
+.risk-score-display {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.risk-score-number {
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 2.5rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+.risk-score-total {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.risk-bar-track {
+  width: 100%;
+
+  height: 5px;
+
+  background: var(--bg-secondary);
+
+  border-radius: 3px;
+
+  margin-top: 10px;
+
+  overflow: hidden;
+}
+
+.risk-bar-fill {
+  height: 100%;
+
+  border-radius: 3px;
+
+  transition: width var(--transition-slow);
+}
+
+
+/* ============================================================
+   SENSOR VALUE ROWS
+   ============================================================ */
+
+.sensor-readings {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0;
+
+  min-width: 0;
+}
+
+.sensor-reading-row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 9px 0;
+
+  border-bottom: 1px solid var(--border-light);
+
+  min-width: 0;
+}
+
+.sensor-reading-row:last-child {
+  border-bottom: none;
+}
+
+.sensor-reading-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+
+  min-width: 0;
+}
+
+.sensor-reading-value {
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 0.88rem;
+
+  color: var(--text-primary);
+
+  font-weight: 500;
+
+  text-align: right;
+
+  min-width: 0;
+}
+
+.sensor-reading-value.elevated {
+  color: var(--status-warning);
+}
+
+.sensor-reading-value.critical {
+  color: var(--status-high);
+}
+
+
+/* ============================================================
+   ALERT PULSE
+   ============================================================ */
+
+@keyframes alertPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.alert-pulse {
+  animation: alertPulse 2s ease-in-out infinite;
+}
+
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-fade-in {
+  animation: fadeIn var(--transition-base) ease forwards;
+}
+
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0;
+
+  position: relative;
+
+  min-width: 0;
+}
+
+.timeline::before {
+  content: '';
+
+  position: absolute;
+
+  left: 8px;
+
+  top: 8px;
+
+  bottom: 8px;
+
+  width: 1px;
+
+  background: var(--border);
+}
+
+.timeline-item {
+  display: flex;
+
+  gap: 20px;
+
+  padding: 6px 0;
+
+  position: relative;
+
+  min-width: 0;
+}
+
+.timeline-dot {
+  width: 17px;
+  height: 17px;
+
+  border-radius: 50%;
+
+  border: 2px solid var(--border);
+
+  background: var(--bg-surface);
+
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  position: relative;
+
+  z-index: 1;
+
+  transition: border-color var(--transition-slow);
+}
+
+.timeline-dot.done {
+  border-color: var(--status-normal);
+  background: var(--status-normal-bg);
+}
+
+.timeline-dot.active {
+  border-color: var(--status-high);
+  background: var(--status-high-bg);
+}
+
+.timeline-content {
+  flex: 1;
+
+  min-width: 0;
+
+  padding-bottom: 16px;
+}
+
+.timeline-label {
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  color: var(--text-primary);
+}
+
+.timeline-meta {
+  font-size: 0.78rem;
+
+  color: var(--text-muted);
+
+  margin-top: 2px;
+}
+
+
+/* ============================================================
+   TABS / TIME RANGE
+   ============================================================ */
+
+.tab-group {
+  display: flex;
+
+  gap: 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  overflow: hidden;
+
+  max-width: 100%;
+}
+
+.tab-btn {
+  padding: 6px 14px;
+
+  font-size: 0.8rem;
+
+  font-weight: 400;
+
+  color: var(--text-secondary);
+
+  background: var(--bg-surface);
+
+  border: none;
+
+  border-right: 1px solid var(--border);
+
+  cursor: pointer;
+
+  transition: all var(--transition-fast);
+
+  font-family: inherit;
+
+  white-space: nowrap;
+
+  flex-shrink: 0;
+}
+
+.tab-btn:last-child {
+  border-right: none;
+}
+
+.tab-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  background: var(--bg-secondary);
+
+  color: var(--text-primary);
+
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   TABLET RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .page-content {
+    padding: 84px 16px 18px;
+  }
+
+  .navbar {
+    padding: 8px 16px;
+
+    gap: 16px;
+
+    flex-wrap: wrap;
+
+    height: auto;
+
+    min-height: var(--nav-height);
+  }
+
+  .navbar-nav {
+    order: 3;
+
+    width: 100%;
+
+    flex: 0 0 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+
+    border-top: 1px solid var(--border-light);
+
+    padding-top: 4px;
+  }
+
+  .navbar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    height: 38px;
+
+    padding: 0 10px;
+
+    font-size: 0.82rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    min-width: 0;
+  }
+}
+
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+
+  /* ---------- Main content ---------- */
+
+  .page-content {
+    width: 100%;
+
+    max-width: 100%;
+
+    padding: 88px 12px 24px;
+  }
+
+  .page-header {
+    margin-bottom: 18px;
+  }
+
+  .page-header h1 {
+    font-size: 1.15rem;
+  }
+
+  .page-header p {
+    font-size: 0.78rem;
+
+    line-height: 1.5;
+  }
+
+
+  /* ---------- Fixed mobile navbar ---------- */
+
+  .navbar {
+    width: 100%;
+
+    max-width: 100%;
+
+    padding: 8px 12px;
+
+    gap: 8px;
+
+    min-height: 56px;
+  }
+
+  .navbar-brand {
+    min-width: 0;
+
+    max-width: 55%;
+  }
+
+  .navbar-brand-name {
+    font-size: 0.92rem;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+  .navbar-brand-sub {
+    display: none;
+  }
+
+  .navbar-right {
+    margin-left: auto;
+
+    gap: 8px;
+  }
+
+  .system-status {
+    font-size: 0.7rem;
+  }
+
+  .theme-toggle {
+    padding: 5px 8px;
+
+    font-size: 0.72rem;
+  }
+
+
+  /* ---------- Mobile navigation ---------- */
+
+  .navbar-nav {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+
+    flex-wrap: nowrap;
+
+    padding-bottom: 2px;
+  }
+
+  .navbar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    flex: 0 0 auto;
+
+    height: 36px;
+
+    padding: 0 10px;
+
+    font-size: 0.76rem;
+  }
+
+  .nav-link.active::after {
+    left: 10px;
+
+    right: 10px;
+  }
+
+
+  /* ---------- Panels ---------- */
+
+  .panel {
+    width: 100%;
+
+    max-width: 100%;
+
+    padding: 14px;
+
+    overflow: hidden;
+  }
+
+  .panel-sm {
+    padding: 12px;
+  }
+
+  .panel-title {
+    font-size: 0.72rem;
+
+    margin-bottom: 12px;
+  }
+
+
+  /* ---------- Grids ---------- */
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+
+    gap: 12px;
+  }
+
+  .live-monitoring-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+
+  /* ---------- Flex ---------- */
+
+  .flex {
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    min-height: 38px;
+  }
+
+  .btn-lg {
+    width: 100%;
+  }
+
+
+  /* ---------- Forms ---------- */
+
+  select {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+
+  /* ---------- Sensor readings ---------- */
+
+  .sensor-reading-row {
+    gap: 10px;
+  }
+
+  .sensor-reading-label {
+    font-size: 0.78rem;
+
+    min-width: 0;
+  }
+
+  .sensor-reading-value {
+    font-size: 0.8rem;
+
+    text-align: right;
+
+    word-break: break-word;
+
+    overflow-wrap: anywhere;
+  }
+
+
+  /* ---------- Risk score ---------- */
+
+  .risk-score-number {
+    font-size: 2rem;
+  }
+
+
+  /* ---------- Tabs ---------- */
+
+  .tab-group {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+  }
+
+  .tab-group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-btn {
+    flex: 1 0 auto;
+
+    padding: 7px 10px;
+
+    font-size: 0.72rem;
+
+    white-space: nowrap;
+  }
+
+
+  /* ---------- Tables ---------- */
+
+  .table-container,
+  .table-wrapper {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 620px;
+  }
+
+
+  /* ---------- Charts ---------- */
+
+  canvas {
+    max-width: 100%;
+  }
+
+
+  /* ---------- Page header ---------- */
+
+  .page-header > div,
+  .page-header > div:first-child {
+    flex-wrap: wrap;
+  }
+
+
+  /* ---------- Timeline ---------- */
+
+  .timeline-item {
+    gap: 12px;
+  }
+
+
+  /* ---------- Spacing ---------- */
+
+  .gap-24 {
+    gap: 12px;
+  }
+
+  .gap-20 {
+    gap: 12px;
+  }
+
+  .gap-16 {
+    gap: 10px;
+  }
+}
+
+
+/* ============================================================
+   EXTRA SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+  .page-content {
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+    padding-top: 88px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .navbar {
+    padding-left: 10px;
+
+    padding-right: 10px;
+  }
+
+  .navbar-brand {
+    max-width: 60%;
+  }
+
+  .nav-link {
+    padding-left: 8px;
+
+    padding-right: 8px;
+
+    font-size: 0.72rem;
+  }
+
+  .system-status {
+    display: none;
+  }
+
+  .theme-toggle {
+    padding: 5px 7px;
+  }
+
+  .risk-score-number {
+    font-size: 1.8rem;
+  }
+
+  .sensor-reading-row {
+    gap: 6px;
+  }
+
+  .sensor-reading-label {
+    font-size: 0.74rem;
+  }
+
+  .sensor-reading-value {
+    font-size: 0.74rem;
+  }
+}
+
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-small {
+  font-size: 0.8rem;
+}
+
+.text-xs {
+  font-size: 0.72rem;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 4px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-12 {
+  gap: 12px;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-24 {
+  gap: 24px;
+}
+
+.mt-4 {
+  margin-top: 4px;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mt-12 {
+  margin-top: 12px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-24 {
+  margin-top: 24px;
+}
+
+.mb-4 {
+  margin-bottom: 4px;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.mb-12 {
+  margin-bottom: 12px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.uppercase {
+  text-transform: uppercase;
+
+  letter-spacing: 0.06em;
+}
+
+
+/* ============================================================
+   ALARM PULSE
+   ============================================================ */
+
+@keyframes alarmPulse {
+
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

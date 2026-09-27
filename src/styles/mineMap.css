@@ -1,0 +1,675 @@
+/* =========================================================
+   MINE MAP
+   Existing UI + Light/Dark Theme Support
+   ========================================================= */
+
+.real-mine-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  min-height: 640px;
+}
+
+/* =========================================================
+   3D MINE VIEW
+   ========================================================= */
+
+.real-mine-view {
+  position: relative;
+  min-height: 640px;
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  background: #11161b;
+  box-shadow: var(--shadow-sm);
+}
+
+.real-mine-view canvas {
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  min-height: 640px;
+}
+
+/* =========================================================
+   MINE HUD
+   ========================================================= */
+
+.mine-hud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 15px;
+
+  background: rgba(10, 14, 18, 0.84);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+
+  backdrop-filter: blur(10px);
+
+  pointer-events: none;
+}
+
+.mine-hud strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.mine-hud > div:first-child span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #89929d;
+
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+}
+
+/* =========================================================
+   LIVE MONITORING STATUS
+   ========================================================= */
+
+.mine-live-status {
+  display: flex !important;
+  align-items: center;
+
+  gap: 7px;
+
+  margin: 0 !important;
+
+  color: #63d18a !important;
+
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem !important;
+  font-weight: 500;
+}
+
+.mine-live-status span {
+  width: 7px;
+  height: 7px;
+
+  margin: 0 !important;
+
+  border-radius: 50%;
+
+  background: #45c878;
+
+  box-shadow:
+    0 0 8px rgba(69, 200, 120, 0.9);
+
+  animation: mineLivePulse 1.5s infinite;
+}
+
+@keyframes mineLivePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* =========================================================
+   MINE LEGEND
+   ========================================================= */
+
+.mine-legend {
+  position: absolute;
+
+  left: 16px;
+  bottom: 16px;
+
+  z-index: 5;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 9px 12px;
+
+  background: rgba(10, 14, 18, 0.86);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+
+  color: #b8c0c8;
+
+  font-size: 0.7rem;
+
+  backdrop-filter: blur(8px);
+
+  pointer-events: none;
+}
+
+.mine-legend > div {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  color: #b8c0c8;
+}
+
+/* =========================================================
+   LEGEND DOTS
+   ========================================================= */
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+
+  display: inline-block;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+}
+
+/* Normal */
+
+.legend-dot.normal {
+  background: #45c878;
+
+  box-shadow:
+    0 0 7px rgba(69, 200, 120, 0.7);
+}
+
+/* Warning */
+
+.legend-dot.warning {
+  background: #e6b84c;
+
+  box-shadow:
+    0 0 7px rgba(230, 184, 76, 0.7);
+}
+
+/* High */
+
+.legend-dot.high {
+  background: #ed8b3d;
+
+  box-shadow:
+    0 0 7px rgba(237, 139, 61, 0.7);
+}
+
+/* Critical */
+
+.legend-dot.critical {
+  background: #e05252;
+
+  box-shadow:
+    0 0 9px rgba(224, 82, 82, 0.9);
+}
+
+/* =========================================================
+   API ERROR
+   ========================================================= */
+
+.mine-api-error {
+  position: absolute;
+
+  top: 76px;
+  right: 16px;
+
+  z-index: 6;
+
+  padding: 9px 12px;
+
+  background: rgba(85, 25, 25, 0.92);
+
+  border: 1px solid #9b4646;
+  border-radius: 7px;
+
+  color: #ffb2b2;
+
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+}
+
+/* =========================================================
+   RIGHT SIDE PANEL
+   ========================================================= */
+
+.real-mine-side {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  min-width: 0;
+}
+
+/* =========================================================
+   MINE NODE LIST
+   ========================================================= */
+
+.mine-node-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  margin-top: 10px;
+}
+
+/* =========================================================
+   NODE CARD
+   ========================================================= */
+
+.mine-node-card {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 11px 12px;
+
+  background: transparent;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+
+  color: var(--text-primary);
+
+  text-align: left;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.mine-node-card:hover {
+  background: var(--bg-secondary);
+
+  border-color: var(--accent-blue);
+
+  transform: translateY(-1px);
+}
+
+.mine-node-card.selected {
+  background: var(--bg-secondary);
+
+  border-color: var(--accent-blue);
+
+  box-shadow:
+    0 0 0 1px rgba(52, 132, 228, 0.12);
+}
+
+/* =========================================================
+   NODE TEXT
+   ========================================================= */
+
+.mine-node-card > div {
+  min-width: 0;
+}
+
+.mine-node-card strong {
+  display: block;
+
+  color: var(--text-primary);
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mine-node-card > div > span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--text-muted);
+
+  font-size: 0.68rem;
+}
+
+/* =========================================================
+   NODE STATUS DOT
+   ========================================================= */
+
+.node-status-dot {
+  width: 10px !important;
+  height: 10px !important;
+
+  min-width: 10px;
+
+  margin: 0 !important;
+
+  border-radius: 50%;
+}
+
+/* Normal */
+
+.node-status-dot.normal {
+  background: #45c878;
+
+  box-shadow:
+    0 0 8px rgba(69, 200, 120, 0.7);
+}
+
+/* Warning */
+
+.node-status-dot.warning {
+  background: #e6b84c;
+
+  box-shadow:
+    0 0 8px rgba(230, 184, 76, 0.7);
+}
+
+/* High */
+
+.node-status-dot.high {
+  background: #ed8b3d;
+
+  box-shadow:
+    0 0 8px rgba(237, 139, 61, 0.7);
+}
+
+/* Critical */
+
+.node-status-dot.critical {
+  background: #e05252;
+
+  box-shadow:
+    0 0 12px rgba(224, 82, 82, 0.9);
+
+  animation: criticalNodePulse 0.7s infinite;
+}
+
+/* Offline */
+
+.node-status-dot.offline {
+  background: #777777;
+}
+
+@keyframes criticalNodePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.55);
+    opacity: 0.45;
+  }
+}
+
+/* =========================================================
+   NODE DETAILS
+   ========================================================= */
+
+.mine-node-name {
+  margin: 8px 0;
+
+  color: var(--text-primary);
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   SENSOR READINGS
+   ========================================================= */
+
+.sensor-readings {
+  width: 100%;
+}
+
+.sensor-reading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 7px 0;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text-muted);
+
+  font-size: 0.72rem;
+}
+
+.sensor-reading-row:last-child {
+  border-bottom: none;
+}
+
+.sensor-reading-row span {
+  color: var(--text-muted);
+}
+
+.sensor-reading-row strong {
+  color: var(--text-primary);
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   NETWORK STATUS
+   ========================================================= */
+
+.mine-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid var(--border);
+
+  font-size: 0.78rem;
+}
+
+.mine-stat:last-child {
+  border-bottom: none;
+}
+
+.mine-stat span {
+  color: var(--text-muted);
+}
+
+.mine-stat strong {
+  color: var(--text-primary);
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   DARK MODE SAFETY
+   ========================================================= */
+
+/*
+ * The browser can otherwise give <button> text its own
+ * default color. These rules force Mine Map elements to
+ * follow the application's theme.
+ */
+
+.dark .mine-node-card {
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.dark .mine-node-card:hover,
+.dark .mine-node-card.selected {
+  background: var(--bg-secondary);
+}
+
+.dark .mine-node-card strong,
+.dark .mine-node-name,
+.dark .sensor-reading-row strong,
+.dark .mine-stat strong {
+  color: var(--text-primary);
+}
+
+.dark .mine-node-card > div > span,
+.dark .sensor-reading-row,
+.dark .sensor-reading-row span,
+.dark .mine-stat span {
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   LIGHT MODE SAFETY
+   ========================================================= */
+
+.mine-node-card {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mine-node-card:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .real-mine-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      300px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .real-mine-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .real-mine-view {
+    min-height: 520px;
+  }
+
+  .real-mine-view canvas {
+    min-height: 520px;
+  }
+
+  .real-mine-side {
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    align-items: start;
+  }
+}
+
+@media (max-width: 700px) {
+  .real-mine-side {
+    grid-template-columns: 1fr;
+  }
+
+  .real-mine-view {
+    min-height: 500px;
+  }
+
+  .real-mine-view canvas {
+    min-height: 500px;
+  }
+
+  .mine-hud {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+
+    padding: 10px 12px;
+  }
+
+  .mine-legend {
+    left: 10px;
+    bottom: 10px;
+
+    gap: 9px;
+
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .real-mine-layout {
+    gap: 12px;
+  }
+
+  .real-mine-view {
+    min-height: 450px;
+
+    border-radius: var(--radius-md);
+  }
+
+  .real-mine-view canvas {
+    min-height: 450px;
+  }
+
+  .mine-hud {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 7px;
+  }
+
+  .mine-hud strong {
+    font-size: 0.78rem;
+  }
+
+  .mine-hud > div:first-child span {
+    font-size: 0.58rem;
+  }
+
+  .mine-live-status {
+    font-size: 0.6rem !important;
+  }
+
+  .mine-legend {
+    gap: 7px 10px;
+
+    font-size: 0.62rem;
+  }
+
+  .legend-dot {
+    width: 7px;
+    height: 7px;
+  }
+}
