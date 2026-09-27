@@ -15,7 +15,10 @@ const app = express();
 
 app.use(
     cors({
-        origin: "http://localhost:5173"
+        origin: [
+            "http://localhost:5173",
+            "https://mineguard-6jyw.onrender.com"
+        ]
     })
 );
 
