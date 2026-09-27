@@ -1,8 +1,8 @@
-# ⛏️ MineGuard
+# ⛏️ SubsiSense
 
 ## Real-Time Mine Safety & Risk Monitoring Platform
 
-MineGuard is a real-time mine safety monitoring platform designed to monitor sensor telemetry, detect abnormal mine conditions, calculate safety risk levels, and provide automatic alerts.
+SubsiSense is a real-time mine safety monitoring platform designed to monitor sensor telemetry, detect abnormal mine conditions, calculate safety risk levels, and provide automatic alerts.
 
 The platform connects IoT sensor data through **ThingsBoard**, processes the telemetry through a **Node.js/Express backend**, stores historical readings in **PostgreSQL**, and presents the information through a modern **React dashboard**.
 
@@ -10,7 +10,7 @@ The platform connects IoT sensor data through **ThingsBoard**, processes the tel
 
 ## 🚀 Project Overview
 
-MineGuard provides a centralized monitoring system for mine safety conditions.
+SubsiSense provides a centralized monitoring system for mine safety conditions.
 
 The system continuously receives sensor readings such as:
 
@@ -39,7 +39,7 @@ The dashboard provides:
 
 ```text
                     ┌──────────────────────┐
-                    │     IoT Sensor       │
+                    │      IoT Sensor      │
                     │   ESP32 / Sensors    │
                     └──────────┬───────────┘
                                │
@@ -59,24 +59,23 @@ The dashboard provides:
                             │       │
                   ┌─────────┘       └──────────┐
                   ▼                            ▼
-        ┌──────────────────┐          ┌──────────────────┐
-        │   PostgreSQL     │          │   Risk Engine    │
-        │ Historical Data  │          │ Safety Analysis  │
-        └──────────────────┘          └────────┬─────────┘
+          ┌──────────────────┐        ┌──────────────────┐
+          │   PostgreSQL     │        │   Risk Engine    │
+          │ Historical Data  │        │ Safety Analysis  │
+          └──────────────────┘        └────────┬─────────┘
                                                │
                                                ▼
-                                    ┌──────────────────────┐
-                                    │      React UI        │
-                                    │ Monitoring Dashboard │
-                                    └──────────┬───────────┘
-                                               │
-                                               ▼
-                                      🔊 Safety Alerts
-
-                                      ✨ Features
+                                      ┌──────────────────────┐
+                                      │       React UI        │
+                                      │ Monitoring Dashboard  │
+                                      └──────────┬───────────┘
+                                                 │
+                                                 ▼
+                                          🔊 Safety Alerts
+✨ Features
 📡 Real-Time Sensor Monitoring
 
-MineGuard retrieves live telemetry from ThingsBoard through the Node.js backend.
+SubsiSense retrieves live telemetry from ThingsBoard through the Node.js backend.
 
 The monitoring system currently handles:
 
@@ -90,7 +89,7 @@ Live telemetry is refreshed automatically.
 
 ⚠️ Risk Detection
 
-MineGuard evaluates sensor tilt values and assigns a safety risk level.
+SubsiSense evaluates sensor tilt values and assigns a safety risk level.
 
 Current tilt thresholds:
 
@@ -109,7 +108,7 @@ If either axis crosses the configured threshold, the corresponding risk level is
 
 🔊 Automatic Safety Alarm
 
-MineGuard includes an integrated browser-based alarm system.
+SubsiSense includes an integrated browser-based alarm system.
 
 When the sensor enters a warning, high, or critical condition:
 
@@ -135,7 +134,7 @@ The alarm system must first be armed through the dashboard because browsers rest
 
 📊 Historical Monitoring
 
-MineGuard stores sensor readings in PostgreSQL.
+SubsiSense stores sensor readings in PostgreSQL.
 
 Historical data can be used to visualize:
 
@@ -154,8 +153,6 @@ Supported monitoring ranges include:
 🖥️ Dashboard
 
 The React dashboard provides a centralized interface for mine monitoring.
-
-Major sections include:
 
 Dashboard
 
@@ -207,7 +204,7 @@ Hardware / Sensors
 ESP32
 Motion / Tilt Sensors
 📁 Project Structure
-MineGuard/
+SubsiSense/
 │
 ├── public/
 │
@@ -267,11 +264,11 @@ MineGuard/
 └── README.md
 ⚙️ Installation
 1. Clone the Repository
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Gautam0804/SubsiSense.git
 
 Move into the project:
 
-cd MineGuard
+cd SubsiSense
 2. Install Dependencies
 npm install
 🔐 Environment Variables
@@ -322,7 +319,7 @@ CREATE TABLE sensor_readings (
 );
 📡 ThingsBoard Configuration
 
-MineGuard uses ThingsBoard as the IoT telemetry platform.
+SubsiSense uses ThingsBoard as the IoT telemetry platform.
 
 Configure a ThingsBoard device and provide the device ID and API credentials through environment variables.
 
@@ -410,15 +407,12 @@ Risk calculation:
 ≤ 50°
    ↓
 NORMAL
-
 > 50°
    ↓
 WARNING
-
 > 60°
    ↓
 HIGH
-
 > 70°
    ↓
 CRITICAL
@@ -447,19 +441,16 @@ The alarm automatically responds to the risk level received from the backend.
 Example:
 
 NORMAL
-↓
+   ↓
 No sound
-
 WARNING
-↓
+   ↓
 Warning beep
-
 HIGH
-↓
+   ↓
 High-risk alert
-
 CRITICAL
-↓
+   ↓
 Emergency siren
 🧪 Testing
 Test Backend
@@ -477,34 +468,37 @@ You can test the PostgreSQL connection using:
 
 node server/testDatabase.js
 Test ThingsBoard
+
+You can test the ThingsBoard connection using:
+
 node server/testThingsBoard.js
 🔄 Data Flow
 
 The complete real-time data flow is:
 
-                SENSOR
-                   │
-                   ▼
-             THINGSBOARD
-                   │
-                   │ REST API
-                   ▼
-             NODE.JS API
-                   │
-          ┌────────┴────────┐
-          │                 │
-          ▼                 ▼
-     RISK ENGINE       POSTGRESQL
-          │                 │
-          │                 │
-          └────────┬────────┘
-                   ▼
-             REACT FRONTEND
-                   │
-          ┌────────┴────────┐
-          │                 │
-          ▼                 ▼
-     LIVE MONITORING    ALERT SOUND
+                    SENSOR
+                       │
+                       ▼
+                  THINGSBOARD
+                       │
+                       │ REST API
+                       ▼
+                  NODE.JS API
+                       │
+              ┌────────┴────────┐
+              │                 │
+              ▼                 ▼
+         RISK ENGINE       POSTGRESQL
+              │                 │
+              │                 │
+              └────────┬────────┘
+                       ▼
+                REACT FRONTEND
+                       │
+                ┌──────┴──────┐
+                │             │
+                ▼             ▼
+        LIVE MONITORING   ALERT SOUND
 🔒 Security
 
 The project follows basic security practices such as:
@@ -547,7 +541,7 @@ Alert history and acknowledgement
 Sensor health monitoring
 🎯 Project Goals
 
-MineGuard is designed to demonstrate how modern web technologies and IoT systems can be combined to create a real-time safety monitoring platform.
+SubsiSense is designed to demonstrate how modern web technologies and IoT systems can be combined to create a real-time safety monitoring platform.
 
 The main goals are:
 
@@ -572,5 +566,3 @@ JavaScript
 📜 License
 
 This project is developed for educational, portfolio, and demonstration purposes.
-
-Add an appropriate open-source license if the repository is intended to be publicly reused.

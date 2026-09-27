@@ -14,7 +14,7 @@ export default function Navbar({ activePage, onNavigate, theme, onToggleTheme })
   return (
     <nav className="navbar">
       <div className="navbar-brand" onClick={() => onNavigate('dashboard')}>
-        <span className="navbar-brand-name">MineGuard</span>
+        <span className="navbar-brand-name">SubsiSense</span>
         <span className="navbar-brand-sub">Mine Subsidence Monitoring</span>
       </div>
 
